@@ -1,10 +1,5 @@
 # **Traffic Sign Recognition** 
 
-## Writeup
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
 
 **Build a Traffic Sign Recognition Project**
 
@@ -19,24 +14,16 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image1]: ./results/LoadImages.png "LoadImages"
+[image2]: ./results/TrainingDist.png "Distribution of Training Dataset"
+[image3]: ./results/ValidDist.png "Distribution of Validation Dataset"
+[image4]: ./results/TestingDist.png "Distribution of Testing Dataset"
+[image5]: ./results/Training_ValidationHistory.png "Graph of Training and Validation Accuracy through each EPOCH of Training"
+[image6]: ./results/German_Traffic_Signs.png "German Traffic Signs"
+[image7]: ./results/PerformanceofNN.png "Performance of the Final Trained Network"
 
-## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
----
-### Writeup / README
-
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
-
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+In this Project, i utilized deep learning and convolutional neural networks to classify traffic signs from Germany. My implementation and project code can be reviewed [here](https://github.com/JSachdev92/TrafficSignClassifier/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic_Sign_Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
