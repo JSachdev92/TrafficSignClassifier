@@ -36,7 +36,7 @@ signs data set:
 * The shape of a traffic sign image is (32, 32, 3)
 * The number of unique classes/labels in the data set is 43
 
-#### 2. Include an exploratory visualization of the dataset.
+#### Exploratory visualization of the dataset.
 
 There are 43 unique road signs that we want to classify in this project. In order to visualize and understand what kind of signs were chosen, i plotted the first image of each road sign. 
 
@@ -56,9 +56,9 @@ I then did the same for the validation and testing datasets and noticed that the
 For the dataprocessing, i just normalized the pixel data between 0 and 1. This is one area i would like to spend more time on when i revisit the project as i feel that adding data and using pre-processing techiniques like converting to greyscale will yield even better results. 
 
 
-#### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+#### Designing the Model Architecture and design decisions
 
-In terms of the model architecture, i started with the LeNet architecture from the CNN lesson and adjusted the input information and final output information to get it to run. I think tried to play with the hyperparameters, specifically the learning rate, EPOCH and batch size. I managed to obtain a 92% validation accuracy which was higher than i was expecting. I then realized that there was some definite overfitting occuring, so i implemented a basic L2 regularization, adding a cost for the weights at every step of the network. After tuning the hyper parameters, i achieved a 93% validation accuracy with this approach. I then decided to replace the L2 regularization with the dropout technique taught in the classroom. I initially put this on all the layers except the final output and achieved a validation accuracy of 95%. 
+In terms of the model architecture, i started with the LeNet architecture from the CNN lesson and adjusted the input information and final output information to get it to run. I started with the LeNET architecture based on the directions given in the project and in the course materials. The LeNET architecture utilizes Convolutional Neural Networks (CNN's) in sequence, connected to fully connected layers to process information. I think it is good for a traffic sign classification problem because CNN's are known to be useful to detect information in an image since it breaks down the image into smaller images, moves over the whole image and creates a new image with the results. This allows it to learn individual defining aspects of images, without human supervision and with minimal computational cost. Initially I took the LeNET architecture and tried to play with the hyperparameters, specifically the learning rate, EPOCH and batch size. I managed to obtain a 92% validation accuracy which was higher than i was expecting. I then realized that there was some definite overfitting occuring, so i implemented a basic L2 regularization, adding a cost for the weights at every step of the network. After tuning the hyper parameters, i achieved a 93% validation accuracy with this approach. I then decided to replace the L2 regularization with the dropout technique taught in the classroom. I initially put this on all the layers except the final output and achieved a validation accuracy of 95%. 
 I then reduced the number of dropouts until i found an optimal solution with 1 dropout in the 2nd convolution layer and  1 dropout in the 1st fully connected layer. This allowed me to improve my validation accuracy to 96%.
 I then added another CNN layer, adjusted the dropout probability and utilized and adaptive learning rate so that i can use a high rate at the begining and a lower learning rate towards the end of the training cycle and achieved a final learning rate of: 96.6%
 
@@ -86,28 +86,19 @@ My final model consisted of the following layers:
  
 
 
-#### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+#### The training process
 
-To train the model, I used an ....
+Once i had finalized the architecture above, the training process was fairly straight forward. I played with several parameters, including batch size, epoch, learning rate and the keep probability for the dropout functions. For the Batch size, i played with the batch size, starting from 8 and going all the way up to 500. I found that as i reduced the batch size, the predicitions were slightly more accurate at the cost of speed. I came upon a good comprimise at a batch size of 200. In terms of the dropout probability, i started with a keep probability of 50% and played with the values, going up to 75% and going all the way down to 30%. When i raised the probability, i noticed more underfitting on the data. when i raised the probability, i noticed the network had a harder time learning the images. I noticed that the optimal performance was with a keep rate of 50% and 57.5% and i settled on a keep rate of 55%. For the learning rate, i noticed that a smaller learning rate resulted in the model predicition having less of a variance between each iteration. This meant that the parameters were adjusted by smaller amounts each time and the results would be more stable. The downside was that it required more epochs to reach the same overall prediction accuracy as a higher learning rate. Having a higher learning rate reached the ballpark predicition accuracy faster, but then resulted in overfitting at higher EPOCH's. To obtain the best of both worlds, i implemented a variable learning rate that slowed down with time. I started with a learning rate of 0.003 and as it approached EPOCH 100, it would be nearing a learning rate 5 times less than the original. In terms of the EPOCH's, i picked a value of 150 as i realized that there were fairly noticable improvements made in the 125-145 EPOCH range and wanted the system to stabalize to a solution. I could have probably chosen 200 EPOCH's to allow for an even more stable solution but i found this worked well.
 
-#### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
-
+The training and validation accuracy as i trained the model are shown in the figure below:
+![alt text][image5]
+ 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 1.000
+* validation set accuracy of 0.966 
+* test set accuracy of 0.949
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
  
 
 ### Test a Model on New Images
@@ -116,7 +107,7 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
- ![alt text][image5] ![alt text][image6] 
+ ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
 The first image might be difficult to classify because ...
