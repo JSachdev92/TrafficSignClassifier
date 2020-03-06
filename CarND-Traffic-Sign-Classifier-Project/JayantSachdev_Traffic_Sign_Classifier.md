@@ -94,57 +94,40 @@ The training and validation accuracy as i trained the model are shown in the fig
 ![alt text][image5]
  
 My final model results were:
-* training set accuracy of 1.000
-* validation set accuracy of 0.966 
-* test set accuracy of 0.949
+* training set accuracy of 100%
+* validation set accuracy of 96.6% 
+* test set accuracy of 94.9%
 
 
- 
+### Test the Model on New Images
 
-### Test a Model on New Images
-
-#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
-
-Here are five German traffic signs that I found on the web:
+I selected five German traffic signs from the web to test my model with. I used images some clear and complicated images that contained complications such as: an angled prespective; features in the background; and poor resolution. This allowed to properly evaluate the technical capability of the model, as it should easily detect the easy images and i would assume it would have more difficulties with the images with less than ideal conditions.  
 
  ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
 
-The first image might be difficult to classify because ...
 
-#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+Of the images, i would expect the model to struggle with the Yield sign, sign it is of poor resolution, has features in the background and is not a straight perpestive but is angled. I would expect the system may or may not struggle with the stop sign and the end of all speed and passing limits sign since the stop sign is at an angle and has features in the background, while the end of all speed and passing limits have a lot of details that are blurred. I would expect the model to be pretty accurate with the dangerous curve to the left and the roundabout mandatory since they are fairly idealistic images.
 
+#### Predicition Model Analysis
 Here are the results of the prediction:
+
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Yield      		| Yield   									| 
+| Stop     			| Stop 										|
+| Dangerous curve to the left					| Dangerous curve to the left	|
+| End of all speed and passing limits	      		| End of all speed and passing limits|
+| Roundabout mandatory			| Roundabout mandatory|
 
+* With a model accuracy of 1.00
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess all 5 of the traffic signs, which gives an accuracy of 100%. This compares favorably to the accuracy on the test set of 94.9%. The softmax probabilities for each image are shown below:
 
-#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+![alt text][image7] 
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+As you can see, the model is essentially 100% sure on all the images except the yield image, which has a softmax probability of 71.5%. This compares favorably with my intial estimate since i predicted that the yield image was the toughest of the lot with the most disturbances in the image. I was happy to see a near perfect softmax probability for the other images.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+## Conclusions
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
-
-
-For the second image ... 
-
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-#### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
-
-
+In conclusion i believe this was a very successful project. I sucesfully modified the LeNET architecture, utilizing dropouts and adding a convolution layer to achieve a model accuracy of 96.6% on the validation dataset. I believe that there are still area's of improvement, especially with the pre-processing, as i think converting images to greyscale will reduce unnessary information in the image to make it easier to learn important features. When i revisit this project, this is the area i will focus on the most. When putting in images from the internet, the model correctly predicted all of them, even though some of the images were less than ideal and could be considered challenging to classify. While this is pleasing, a sample size of 5 is small and additional new images should be used to get an even better understanding of the models performance.
