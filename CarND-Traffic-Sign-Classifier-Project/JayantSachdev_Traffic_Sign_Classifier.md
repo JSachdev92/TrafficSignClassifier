@@ -50,27 +50,39 @@ I then did the same for the validation and testing datasets and noticed that the
 
 ### Design and Test a Model Architecture
 
-#### Data Pre-Processing 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
+#### Data Pre-Processing 
 
 
-For the dataprocessing, i just normalized the pixel data between 0 and 1. This is one area i would like to spend more time on when i revisit the project as i feel that adding data and using pre-processing techiniques like converting to greyscale will yield much higher results. 
+For the dataprocessing, i just normalized the pixel data between 0 and 1. This is one area i would like to spend more time on when i revisit the project as i feel that adding data and using pre-processing techiniques like converting to greyscale will yield even better results. 
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+
+In terms of the model architecture, i started with the LeNet architecture from the CNN lesson and adjusted the input information and final output information to get it to run. I think tried to play with the hyperparameters, specifically the learning rate, EPOCH and batch size. I managed to obtain a 92% validation accuracy which was higher than i was expecting. I then realized that there was some definite overfitting occuring, so i implemented a basic L2 regularization, adding a cost for the weights at every step of the network. After tuning the hyper parameters, i achieved a 93% validation accuracy with this approach. I then decided to replace the L2 regularization with the dropout technique taught in the classroom. I initially put this on all the layers except the final output and achieved a validation accuracy of 95%. 
+I then reduced the number of dropouts until i found an optimal solution with 1 dropout in the 2nd convolution layer and  1 dropout in the 1st fully connected layer. This allowed me to improve my validation accuracy to 96%.
+I then added another CNN layer, adjusted the dropout probability and utilized and adaptive learning rate so that i can use a high rate at the begining and a lower learning rate towards the end of the training cycle and achieved a final learning rate of: 96.6%
 
 My final model consisted of the following layers:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x6 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
+| Max pooling	      	| 1x1 stride,  outputs 14x14x6|
+| Convolution 5x5	    | 1x1 stride, valid padding, outputs 10x10x16|
+| RELU					|												|
+| Dropout		|												|
+| Max pooling	      	| 2x2 stride,  outputs 5x5x16 |
+| Convolution 4x4	    | 1x1 stride, valid padding, outputs 2x2x200|
+| RELU					|												|
+| Flatten					|	800 outputs	|
+| Fully connected		| 120 Outputs	|
+| Dropout		|												|
+| Fully connected		| 84 Outputs	|
+| Fully connected		| 43 Outputs	|
+| Softmax				|         									|
+
  
 
 
